@@ -1,4 +1,5 @@
-"use strict";
+'use strict';
+
 const bcrypt = require("bcryptjs");
 
 let options = {};
@@ -7,63 +8,63 @@ if (process.env.NODE_ENV === "production") {
 }
 
 module.exports = {
-  up: async (queryInterface, Sequelize) => {
+  async up (queryInterface, Sequelize) {
     options.tableName = "Users";
     return queryInterface.bulkInsert(
       options,
       [
         {
           email: "demo@aa.io",
-          firstName: "Demo",
-          lastName: "lition",
+          first_name: "Demo",
+          last_name: "lition",
           hashedPassword: bcrypt.hashSync("password"),
         },
         {
           email: "user1@aa.io",
-          firstName: "fake1",
-          lastName: "user",
+          first_name: "fake1",
+          last_name: "user",
           hashedPassword: bcrypt.hashSync("password"),
         },
         {
           email: "user2@aa.io",
-          firstName: "fake2",
-          lastName: "user",
+          first_name: "fake2",
+          last_name: "user",
           hashedPassword: bcrypt.hashSync("password"),
         },
         {
           email: "user3@aa.io",
-          firstName: "fake3",
-          lastName: "user",
+          first_name: "fake3",
+          last_name: "user",
           hashedPassword: bcrypt.hashSync("password"),
         },
         {
           email: "user4@aa.io",
-          firstName: "fake4",
-          lastName: "user",
+          first_name: "fake4",
+          last_name: "user",
           hashedPassword: bcrypt.hashSync("password"),
         },
         {
           email: "user5@aa.io",
-          firstName: "fake5",
-          lastName: "user",
+          first_name: "fake5",
+          last_name: "user",
           hashedPassword: bcrypt.hashSync("password"),
         },
         {
           email: "user6@aa.io",
-          firstName: "fake6",
-          lastName: "user",
+          first_name: "fake6",
+          last_name: "user",
           hashedPassword: bcrypt.hashSync("password"),
         },
         {
           email: "user7@aa.io",
-          firstName: "fake7",
-          lastName: "user",
+          first_name: "fake7",
+          last_name: "user",
           hashedPassword: bcrypt.hashSync("password"),
         },
         {
           email: "user8@aa.io",
-          firstName: "fake8",
-          lastName: "user",
+          first_name: "fake8",
+          last_name: "user",
           hashedPassword: bcrypt.hashSync("password"),
         },
       ],
@@ -71,7 +72,7 @@ module.exports = {
     );
   },
 
-  down: async (queryInterface, Sequelize) => {
+  async down (queryInterface, Sequelize) {
     options.tableName = "Users";
     const Op = Sequelize.Op;
     return queryInterface.bulkDelete(
@@ -93,5 +94,5 @@ module.exports = {
       },
       {}
     );
-  },
+  }
 };

@@ -1,19 +1,26 @@
 "use strict";
-const { Model, Validator, Sequelize } = require('sequelize');
+const { Model, Validator } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Users extends Model {
 
     static associate(models) {
       // define association here
-      User.hasMany(models.Post, {
+      Users.hasMany(models.Post, {
         foreignKey: 'user_id',
       })
     }
   }
-  User.init(
+  Users.init(
     {
-      first_name: DataTypes.STRING,
-      last_name: DataTypes.STRING,
+      first_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
+      last_name: {
+        type: DataTypes.STRING,
+        allowNull: false,
+      },
       email: {
         type: DataTypes.STRING,
         allowNull: false,
@@ -33,7 +40,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      modelName: "User",
+      modelName: "Users",
       defaultScope: {
         attributes: {
           exclude: ["hashedPassword", "email", "createdAt", "updatedAt"],
@@ -41,5 +48,5 @@ module.exports = (sequelize, DataTypes) => {
       },
     }
   );
-  return User;
+  return Users;
 };
