@@ -14,7 +14,7 @@ router.use('/session', sessionRouter);
 
 router.use('/users', usersRouter);
 
-router.use('post', postRouter)
+router.use('/post', postRouter)
 
 
 router.post('/test', function(req, res) {
