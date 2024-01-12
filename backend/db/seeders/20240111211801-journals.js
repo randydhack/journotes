@@ -16,14 +16,14 @@ module.exports = {
      *   isBetaMember: false
      * }], {});
     */
-    options.tableName = "Posts";
+    options.tableName = "Journals";
     return queryInterface.bulkInsert(
       options,
       [
         {
           title: "first post",
           description: "hello world",
-          post_image_url: "blank",
+          journal_image_url: "blank",
           user_id: 1,
         },
       ],
@@ -32,11 +32,18 @@ module.exports = {
   },
 
   async down (queryInterface, Sequelize) {
-    /**
-     * Add commands to revert seed here.
-     *
-     * Example:
-     * await queryInterface.bulkDelete('People', null, {});
-     */
+    options.tableName = "Journals";
+    const Op = Sequelize.Op;
+    return queryInterface.bulkDelete(
+      options,
+      {
+        user_id: {
+          [Op.in]: [
+            1,
+          ],
+        },
+      },
+      {}
+    );
   }
 };

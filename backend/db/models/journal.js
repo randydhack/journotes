@@ -3,17 +3,22 @@ const {
   Model
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
-  class Post extends Model {
+  class Journal extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
      * The `models/index` file will call this method automatically.
      */
     static associate(models) {
-      // define association here
+
+      Journal.belongsTo(models.User, {
+        foreignKey: 'user_id',
+        as: 'Owner'
+      })
     }
   }
-  Post.init({
+
+  Journal.init({
     title: {
       type: DataTypes.STRING,
       allowNull: false
@@ -22,7 +27,7 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
       allowNull: false
     },
-    post_image_url: {
+    journal_image_url: {
       type: DataTypes.STRING,
       allowNull: true
     },
@@ -32,7 +37,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   }, {
     sequelize,
-    modelName: 'Post',
+    modelName: 'Journal',
   });
-  return Post;
+  return Journal;
 };
