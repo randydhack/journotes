@@ -21,29 +21,6 @@ const handleValidationErrors = (req, _res, next) => {
   next();
 };
 
-const validateInvite = [
-  check("email")
-    .exists({ checkFalsy: true })
-    .isEmail()
-    .custom(async (value, {req}) => {
-      if (!value.match(/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i)) {
-        throw new Error("Please provide a valid email.");
-      }
-      const existingUser = await User.findOne({where: {email: value}})
-      if (!existingUser) {
-        // Will use the below as the error message
-        throw new Error("User with this email does not exist.");
-      }
-
-      const isMember = await Member.findOne({where: {userId: existingUser.id, projectId: req.body.projectId}})
-      if (isMember) {
-        throw new Error("User is already a member.")
-      }
-    }),
-  handleValidationErrors,
-];
-
 module.exports = {
   handleValidationErrors,
-  validateInvite,
 };
