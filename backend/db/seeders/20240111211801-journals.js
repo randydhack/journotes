@@ -25,6 +25,7 @@ module.exports = {
           description: "hello world",
           journal_image_url: "blank",
           user_id: 1,
+          private: false
         },
       ],
       {}

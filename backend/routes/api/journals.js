@@ -1,8 +1,13 @@
 const express = require("express");
-const { setTokenCookie, requireAuth } = require("../../utils/auth");
+const { requireAuth } = require("../../utils/auth");
 
 const { Journal } = require('../../db/models')
 const router = express.Router();
+
+import multer from "multer";
+
+const storage = multer.memoryStorage();
+const upload = multer({ storage: storage });
 
 // Get all journal from a single user
 router.get("/", requireAuth, async (req, res) => {
@@ -18,14 +23,21 @@ router.get("/", requireAuth, async (req, res) => {
 })
 
 // Get a journal by id from a single user
-router.get("/:id", requireAuth, async (req, res) => {
+router.get("/:id", requireAuth, async (req, res, next) => {
     // Find journal by id
     const journal = await Journal.findByPk(req.params.id);
+
+    if (journal.private && journal.user_id !== req.user.id) {
+        const err = new Error("User does not have permission to view journal.");
+        err.status = 404;
+        return next(err);
+    }
+
     res.status(200).json(journal);
 })
 
 // Creates a journal
-router.post("/", requireAuth, async (req, res) => {
+router.post("/", requireAuth, upload.single('image'), async (req, res) => {
 
     // Destrcture the body request from form
     const { title, description, journal_image } = req.body;
