@@ -23,7 +23,7 @@ module.exports = {
         {
           title: "first post",
           description: "hello world",
-          journal_image_url: "blank",
+          imageUrl: "blank",
           user_id: 1,
           private: false
         },
