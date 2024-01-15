@@ -4,8 +4,6 @@ const { requireAuth } = require("../../utils/auth");
 const { Journal } = require("../../db/models");
 const router = express.Router();
 
-import crypto from "crypto";
-
 // AWS and S3 imports
 import multer from "multer";
 import {
