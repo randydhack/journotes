@@ -1,5 +1,5 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
-
+import { csrfFetch } from './csrf'
 // Define a type for the slice state
 interface JournalState {
   data: [] | null,
@@ -15,9 +15,16 @@ const initialState: JournalState = {
 }
 
 export const getJournal = createAsyncThunk("journal", async () => {
-    return fetch("https://jsonplaceholder.typicode.com/users").then(
-        res => res.json()
-    )
+    const res = await csrfFetch(`/api/journal/1`, {
+      method: 'GET',
+      headers: {
+        "Content-Type": "application/json"
+      }
+    })
+
+    if (res.ok) {
+      return res.json()
+    }
 })
 
 export const journalSlice = createSlice({
