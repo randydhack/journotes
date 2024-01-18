@@ -34,7 +34,6 @@ export const login = createAsyncThunk("login/loginAsync", async (loginData: any,
       } catch (error) {
         return rejectWithValue({ error: 'error' || 'An error occurred' });
       }
-
 })
 
 const userSlice = createSlice({

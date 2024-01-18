@@ -4,6 +4,8 @@ import { useAppDispatch, useAppSelector } from './redux/hooks';
 import { getJournal } from './redux/journalSlice';
 import { login } from './redux/userSlice';
 
+
+
 function App() {
 
   const dispatch = useAppDispatch()
@@ -14,7 +16,7 @@ function App() {
   }, [])
 
   const loginData = {
-    credential: 'user1@aa.io',
+    credential: 'demo@aa.io',
     password: 'password'
   }
 
@@ -22,12 +24,11 @@ function App() {
     await dispatch(login(loginData))
   }
 
-  console.log(journals.title)
-
   return (
     <div className="App">
       <button onClick={logins}> login here</button>
       <div>
+        {journals?.map((el:any) => <>{el.title}{el.description}</>)}
       </div>
     </div>
   );
