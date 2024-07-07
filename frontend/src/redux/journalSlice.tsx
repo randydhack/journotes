@@ -19,6 +19,7 @@ const initialState: JournalState = {
   data: [] || null,
   loading: false,
   error: null
+  
 }
 
 // Fetch a single Journal
