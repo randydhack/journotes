@@ -7,7 +7,8 @@ export const store = configureStore({
     journal: journalReducer,
     session: userReducer,
   },
-  
+
+
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
