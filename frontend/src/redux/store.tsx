@@ -8,7 +8,6 @@ export const store = configureStore({
     session: userReducer,
   },
 
-
 })
 
 // Infer the `RootState` and `AppDispatch` types from the store itself
