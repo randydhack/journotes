@@ -7,7 +7,6 @@ export const store = configureStore({
     journal: journalReducer,
     session: userReducer,
 
-
   },
 })
 
