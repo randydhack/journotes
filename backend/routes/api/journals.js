@@ -66,6 +66,7 @@ router.get("/:id", requireAuth, async (req, res, next) => {
     err.status = 404;
     return next(err);
   }
+  
 
   res.status(200).json(journal);
 });
