@@ -14,6 +14,7 @@ interface JournalState {
   error: ErrorResponse | null;
 
 
+
 }
 
 // Define the initial state using that type
