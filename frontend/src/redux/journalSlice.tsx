@@ -13,6 +13,7 @@ interface JournalState {
   loading: boolean;
   error: ErrorResponse | null;
 
+
 }
 
 // Define the initial state using that type
