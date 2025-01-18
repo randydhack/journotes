@@ -20,6 +20,7 @@ interface JournalState {
 // Define the initial state using that type
 const initialState: JournalState = {
   data: [] || null,
+
   loading: false,
   error: null,
 };
