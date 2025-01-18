@@ -27,6 +27,7 @@ const initialState: JournalState = {
 
 // Fetch a single Journal
 export const getJournal = createAsyncThunk(
+
   "journal/singleJournal",
   async () => {
     const res = await csrfFetch(`/api/journal`, {
